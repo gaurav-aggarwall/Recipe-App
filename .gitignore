@@ -4,6 +4,9 @@
 /dist
 /tmp
 /out-tsc
+/vendor
+/app/logs
+
 # Only exists if Bazel was run
 /bazel-out
 
@@ -41,6 +44,11 @@ yarn-error.log
 testem.log
 /typings
 
-# System Files
+#System Files
 .DS_Store
 Thumbs.db
+!.gitkeep
+
+# e2e
+/e2e/*.js
+/e2e/*.map
