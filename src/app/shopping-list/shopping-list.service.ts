@@ -1,20 +1,20 @@
-import { Ingridient } from '../shared/ingridient.model';
 import { EventEmitter } from '@angular/core';
+import { Ingredient } from '../shared/ingredient.model';
 
 export class ShoppingListService {
-    private ingridients: Ingridient[] = [
-        new Ingridient('A', 10),
-        new Ingridient('B', 3)
+    private ingredients: Ingredient[] = [
+        new Ingredient('Burger Bun', 2),
+        new Ingredient('Pasta', 1)
     ];
 
-    ingChanged = new EventEmitter<Ingridient[]>();
+    ingChanged = new EventEmitter<Ingredient[]>();
 
     getIng(){
-        return this.ingridients.slice();
+        return this.ingredients.slice();
     }
 
-    addIng(ing: Ingridient){
-        this.ingridients.push(ing);
-        this.ingChanged.emit(this.ingridients.slice());
+    addIng(ing: Ingredient){
+        this.ingredients.push(ing);
+        this.ingChanged.emit(this.ingredients.slice());
     }
 }
