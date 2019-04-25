@@ -12,12 +12,14 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { DropdownDiective } from './shared/dropdown.directives';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutesModule } from './app-routes.module';
+import { RecipesStartComponent } from './recipes/recipes-start/recipes-start.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     RecipesComponent,
+    RecipesStartComponent,
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
