@@ -1,3 +1,7 @@
-a:hover {
-    cursor: pointer;
-}    
+.recipe-img-detail{
+    max-height: 300px;
+}
+
+#manage-dropdown{
+    margin-bottom: 10px;
+}
