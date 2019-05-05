@@ -9,9 +9,14 @@ export class ShoppingListService {
     ];
 
     ingChanged = new Subject<Ingredient[]>();
+    startedEditing = new Subject<number>();
 
     getIng(){
         return this.ingredients.slice();
+    }
+
+    getIngridient(i: number){
+        return this.ingredients[i];
     }
 
     addIng(ing: Ingredient){
