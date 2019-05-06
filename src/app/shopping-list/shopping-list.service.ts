@@ -11,6 +11,10 @@ export class ShoppingListService {
     ingChanged = new Subject<Ingredient[]>();
     startedEditing = new Subject<number>();
 
+    ingredientsChanged(){
+        this.ingChanged.next(this.ingredients.slice());
+    }
+
     getIng(){
         return this.ingredients.slice();
     }
@@ -21,11 +25,21 @@ export class ShoppingListService {
 
     addIng(ing: Ingredient){
         this.ingredients.push(ing);
-        this.ingChanged.next(this.ingredients.slice());
+        this.ingredientsChanged();
     }
 
     addIngs(ings: Ingredient[]){
         this.ingredients.push(...ings);
-        this.ingChanged.next(this.ingredients.slice());
+        this.ingredientsChanged();
+    }
+
+    updateIng(i: number, newIngredient: Ingredient){
+        this.ingredients[i] = newIngredient;
+        this.ingredientsChanged();
+    }
+
+    deleteIng(i: number){
+        this.ingredients.splice(i, 1);
+        this.ingredientsChanged();
     }
 }
