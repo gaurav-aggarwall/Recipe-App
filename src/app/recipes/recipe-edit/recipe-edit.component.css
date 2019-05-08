@@ -1,0 +1,15 @@
+.control-btns{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.ing-row{
+    margin: 10px 0;
+}
+
+
+/* FORM VALIDATION STYLES */
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+    border: 1px solid #e73333;
+}
