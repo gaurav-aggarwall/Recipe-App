@@ -1,13 +1,16 @@
 .control-btns{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .ing-row{
     margin: 10px 0;
 }
 
+.add-ing{
+    margin: 10px 0;
+}
 
 /* FORM VALIDATION STYLES */
 input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{

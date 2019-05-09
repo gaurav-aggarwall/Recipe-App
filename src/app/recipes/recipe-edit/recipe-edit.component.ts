@@ -55,8 +55,6 @@ export class RecipeEditComponent implements OnInit {
       'description': new FormControl(recipeDescription, Validators.required),
       'ingredients': recipeIng
     });
-
-    console.log(this.recipeForm);
   }
 
 
@@ -81,7 +79,7 @@ export class RecipeEditComponent implements OnInit {
     if(this.isEditing){
       this.recipeService.updateRecipe(this.id, newRecipe);
     } else {
-      this.recipeService.addRecipe(this.recipeForm.value);
+      this.recipeService.addRecipe(newRecipe);
     }
 
     this.onNavigatefromForm();
@@ -108,4 +106,9 @@ export class RecipeEditComponent implements OnInit {
     }));
   }
 
+
+  // Deleting Ingredients
+  onDeleteIngredient(index: number){
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
 }
