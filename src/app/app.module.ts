@@ -18,6 +18,10 @@ import { RecipesStartComponent } from './recipes/recipes-start/recipes-start.com
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
 import { DatabaseService } from './shared/database.service';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from './auth/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import { DatabaseService } from './shared/database.service';
     RecipeEditComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDiective
+    DropdownDiective,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,7 @@ import { DatabaseService } from './shared/database.service';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [ShoppingListService, RecipeService, DatabaseService],
+  providers: [ShoppingListService, RecipeService, DatabaseService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

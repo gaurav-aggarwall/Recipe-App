@@ -8,7 +8,7 @@ import { Recipe } from '../recipes/recipe.model';
 @Injectable()
 export class DatabaseService {
     constructor(private http: Http, private recipeService: RecipeService){};
-    private URL: string = 'https://recipe-61c1c.firebaseio.com/';
+    private URL: string = 'https://recipe-app-cart.firebaseio.com';
 
     save(){
         return this.http.put(`${this.URL}/recipes.json`, this.recipeService.getRecipes());
