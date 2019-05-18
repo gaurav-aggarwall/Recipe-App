@@ -4,18 +4,29 @@ import { map } from 'rxjs/operators';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class DatabaseService {
-    constructor(private http: Http, private recipeService: RecipeService){};
+    constructor(private http: Http, 
+                private recipeService: RecipeService, 
+                private auth: AuthService){
+    };
+
     private URL: string = 'https://recipe-app-cart.firebaseio.com';
 
+
+    // Save Recipes Data
     save(){
-        return this.http.put(`${this.URL}/recipes.json`, this.recipeService.getRecipes());
+        const token = this.auth.getToken();
+        return this.http.put(`${this.URL}/recipes.json?auth=${token}`, this.recipeService.getRecipes());
     }
 
+
+    // Fetch Recipes Data
     fetch(){
-        this.http.get(`${this.URL}/recipes.json`).pipe(map( (response: Response) => {
+        const token = this.auth.getToken();
+        this.http.get(`${this.URL}/recipes.json?auth=${token}`).pipe(map( (response: Response) => {
             const recipes: Recipe[] = response.json();
             for (let recipe of recipes){
                 if(!recipe.ingredients){
