@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutesModule } from './app-routes.module';
 import { AuthModule } from './auth/auth.module';
@@ -13,9 +14,10 @@ import { HeaderComponent } from './header/header.component';
 
 import { AuthGuard } from './auth/auth-guard.service';
 import { RecipeService } from './recipes/recipe.service';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { DatabaseService } from './shared/database.service';
 import { AuthService } from './auth/auth.service';
+
+import { ShoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 
 @NgModule({
@@ -30,9 +32,10 @@ import { AuthService } from './auth/auth.service';
     SharedModule,
     RecipesModule,
     ShoppingListModule,
-    AuthModule
+    AuthModule,
+    StoreModule.forRoot({shoppingList: ShoppingListReducer})
   ],
-  providers: [ShoppingListService, RecipeService, DatabaseService, AuthService, AuthGuard],
+  providers: [RecipeService, DatabaseService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
