@@ -17,7 +17,7 @@ import { RecipeService } from './recipes/recipe.service';
 import { DatabaseService } from './shared/database.service';
 import { AuthService } from './auth/auth.service';
 
-import { ShoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import { reducers } from './store/app.reducers';
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import { ShoppingListReducer } from './shopping-list/store/shopping-list.reducer
     RecipesModule,
     ShoppingListModule,
     AuthModule,
-    StoreModule.forRoot({shoppingList: ShoppingListReducer})
+    StoreModule.forRoot(reducers)
+    
   ],
   providers: [RecipeService, DatabaseService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
