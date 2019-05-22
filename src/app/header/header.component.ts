@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { DatabaseService } from '../shared/database.service';
 import { AuthService } from '../auth/auth.service';
+
+import * as app from "../store/app.reducers";
+import * as auth from "../auth/store/auth.reducer";
 
 @Component({
   selector: 'app-header',
@@ -10,16 +15,18 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private database: DatabaseService, private auth: AuthService) { }
+  authState: Observable<auth.State>;
+
+  constructor(private database: DatabaseService, private auth: AuthService, private store: Store<app.AppState>) { }
 
   ngOnInit(){
-    // this.onFetchData();
+    this.authState = this.store.select('auth');
   }
 
   onSaveData(){
-    this.database.save().subscribe( (response: Response) => {
-      console.log(response);
-    });
+    // this.database.save().subscribe( (response: Response) => {
+    //   console.log(response);
+    // });
   }
   
   onFetchData(){
