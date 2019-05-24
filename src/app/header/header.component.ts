@@ -24,9 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onSaveData(){
-    // this.database.save().subscribe( (response: Response) => {
-    //   console.log(response);
-    // });
+    this.database.save();
   }
   
   onFetchData(){

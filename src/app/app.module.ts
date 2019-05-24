@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
 import { AuthGuard } from './auth/auth-guard.service';
-import { RecipeService } from './recipes/recipe.service';
 import { DatabaseService } from './shared/database.service';
 import { AuthService } from './auth/auth.service';
 
@@ -36,7 +35,7 @@ import { reducers } from './store/app.reducers';
     StoreModule.forRoot(reducers)
     
   ],
-  providers: [RecipeService, DatabaseService, AuthService, AuthGuard],
+  providers: [DatabaseService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

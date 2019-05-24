@@ -3,15 +3,14 @@ import { Http, Response } from "@angular/http";
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
 
 import * as app from "../store/app.reducers";
+import * as actions from "../recipes/store/recipe.actions";
 
 @Injectable()
 export class DatabaseService {
-    constructor(private http: Http, 
-                private recipeService: RecipeService, 
+    constructor(private http: Http,
                 private store: Store<app.AppState>){
     };
 
@@ -20,8 +19,9 @@ export class DatabaseService {
 
     // Save Recipes Data
     save(){
+        console.log('saving');
         this.store.select('auth').subscribe(data => {
-            return this.http.put(`${this.URL}/recipes.json?auth=${data.token}`, this.recipeService.getRecipes());
+            return this.http.put(`${this.URL}/recipes.json?auth=${data.token}`, this.store.dispatch(new actions.FetchRecipes()));
         });
     }
 
@@ -38,7 +38,7 @@ export class DatabaseService {
                 }
                 return recipes;
             })).subscribe( (recipes: Recipe[]) => {
-                this.recipeService.setRecipes(recipes);   
+                this.store.dispatch(new actions.SetRecipes(recipes));   
             });
         });
     }

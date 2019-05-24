@@ -49,17 +49,17 @@ export function RecipeReducer(state = initalState, action: Actions.RecipeActions
             };
 
         case Actions.UPDATE_RECIPE:
-            const recipe = state.recipes[action.payload.index];
+            const recipeToBeUpdated = state.recipes[action.payload.index];
             const updatedRecipe = {
-                ...recipe,
-                ...action.payload
+                ...recipeToBeUpdated,
+                ...action.payload.updatedRecipe
             };
-            const recipes = [...state.recipes];
-            recipes[action.payload.index] = updatedRecipe;
+            const newRecipes = [...state.recipes];
+            newRecipes[action.payload.index] = updatedRecipe;
  
             return {
                 ...state,
-                recipes: recipes
+                recipes: newRecipes
             };
 
         case Actions.DELETE_RECIPE:
@@ -70,6 +70,13 @@ export function RecipeReducer(state = initalState, action: Actions.RecipeActions
                 ...state,
                 recipes: oldRecipes
             };
+
+        case Actions.FETCH_RECIPES:
+            console.log('{...state}', {...state});
+            console.log('{...state.recipes}', {...state.recipes} );
+            console.log('[...state.recipes]', [...state.recipes] );
+
+            return [...state.recipes];    
 
         default: 
             return state;    
