@@ -19,9 +19,11 @@ export class DatabaseService {
 
     // Save Recipes Data
     save(){
-        console.log('saving');
-        this.store.select('auth').subscribe(data => {
-            return this.http.put(`${this.URL}/recipes.json?auth=${data.token}`, this.store.dispatch(new actions.FetchRecipes()));
+        this.store.dispatch(new actions.FetchRecipes());
+        this.store.select('recipes').subscribe( recipes => {
+            this.store.select('auth').subscribe(data => {
+                this.http.put(`${this.URL}/recipes.json?auth=${data.token}`, recipes.recipes).subscribe();
+            });
         });
     }
 

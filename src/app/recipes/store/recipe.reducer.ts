@@ -1,7 +1,7 @@
+import * as Actions from './recipe.actions';
+
 import { Recipe } from '../recipe.model';
 import { Ingredient } from 'src/app/shared/ingredient.model';
-
-import * as Actions from './recipe.actions';
 
 export interface State{
     recipes: Recipe[]
@@ -72,11 +72,7 @@ export function RecipeReducer(state = initalState, action: Actions.RecipeActions
             };
 
         case Actions.FETCH_RECIPES:
-            console.log('{...state}', {...state});
-            console.log('{...state.recipes}', {...state.recipes} );
-            console.log('[...state.recipes]', [...state.recipes] );
-
-            return [...state.recipes];    
+            return state;    
 
         default: 
             return state;    
